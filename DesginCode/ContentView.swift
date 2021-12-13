@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var show : Bool = false
+    
     var body: some View {
         ZStack {
             
@@ -27,16 +30,20 @@ struct ContentView: View {
                 .background(Color.blue)
                 .cornerRadius(20)
                 .shadow(radius: 20)
-                .offset(x:0, y:-20)
+                .offset(x:0, y: show ? -200 : -20)
                 .scaleEffect(0.95)
-                .rotationEffect(.degrees(5))
+                .rotationEffect(.degrees(show ? 0 : 5))
                 .rotation3DEffect(.degrees(5), axis: (x: 10.0, y: 0, z: 0))
                 .blendMode(.darken)
+                .animation(.linear)
+
             
             CardView()
-                .background(Color.cyan)
+                .background(Color("cyan"))
                 .cornerRadius(20)
-                .shadow(radius: 20)
+                .shadow(radius: 20).onTapGesture {
+                    self.show.toggle()
+                }
             
             
             BottonView()
