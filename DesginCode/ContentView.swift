@@ -10,8 +10,10 @@ import SwiftUI
 struct ContentView: View {
     
     @State var show : Bool = false
-    @State var viewState = CGSize.zero
+    @State var viewState : CGSize = CGSize.zero
     @State var showCard : Bool = false
+    @State var bottomState : CGSize = CGSize.zero
+    @State var showFullBottomCard : Bool = false
     
     var body: some View {
         ZStack {
@@ -78,11 +80,42 @@ struct ContentView: View {
                         }
                 )
             
-            
+            Text("\(bottomState.height)").offset(y: -300)
+           
             BottonView()
                 .offset(x:0, y: showCard ? 360 : 1000)
+                .offset(y: bottomState.height)
                 .blur(radius: show ? 20: 0)
                 .animation(.timingCurve(0.2, 0.8, 0.2, 1.0, duration: 0.8))
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                        self.bottomState = value.translation
+                            
+                        if self.showFullBottomCard {
+                            self.bottomState.height += -300
+                        }
+                            
+                        if self.bottomState.height < -300{
+                            self.bottomState.height = -300
+                        }
+                    }
+                        .onEnded { value in
+                            
+                            if self.bottomState.height > 100 {
+                                self.showCard = false
+                            }
+                            
+                            if (self.bottomState.height < -100  && !self.showFullBottomCard) || (self.bottomState.height < -250 && self.showFullBottomCard) {
+                                self.bottomState.height = -300
+                                self.showFullBottomCard  = true
+                            } else {
+                                self.bottomState = .zero
+                                self.showFullBottomCard = false
+                            }
+                            
+                        }
+                )
         }
     }
 }
