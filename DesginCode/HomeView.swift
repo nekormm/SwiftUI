@@ -14,8 +14,6 @@ struct HomeView: View {
     var body: some View {
         VStack {
             
-            
-            
             HStack {
                 Text("Watching")
                     .font(.system(size: 28 , weight: .bold))
@@ -32,8 +30,8 @@ struct HomeView: View {
             
             ScrollView (.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(0 ..< 3) { item in
-                        SectionView()
+                    ForEach(sectionData) { item in
+                        SectionView(section: item)
                     }
                 }
                 .padding(30)
@@ -52,23 +50,26 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 struct SectionView: View {
+    
+    var section : Section
+    
     var body: some View {
         VStack {
             HStack(alignment: .top) {
-                Text("Options available")
+                Text(section.title)
                     .font(.system(size: 24, weight: .semibold))
                     .frame(width: 160, alignment: .leading)
                 
                 Spacer()
                 
-                Image("Logo1")
+                Image(section.logo)
                 
             }
             
-            Text("18 options")
+            Text(section.text)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            Image("Card6")
+            section.image
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 210)
@@ -76,8 +77,26 @@ struct SectionView: View {
         .padding(.top, 20)
         .padding(.horizontal, 20)
         .frame(width: 275, height: 275)
-        .background(Color("card1"))
+        .background(section.color)
         .cornerRadius(30)
-        .shadow(color: Color("card1").opacity(0.5), radius: 20, x: 0, y: 20)
+        .shadow(color: section.color.opacity(0.5), radius: 20, x: 0, y: 20)
     }
 }
+
+
+struct Section:Identifiable {
+    
+    var id = UUID()
+    var title : String
+    var text : String
+    var logo : String
+    var image : Image
+    var color : Color
+    
+}
+
+let sectionData = [
+    Section(title: "Options available", text: "18 options", logo: "Logo1", image: Image("Card6"), color: Color("card1")),
+    Section(title: "Options Not available", text: "3 options", logo: "Logo1", image: Image(uiImage: #imageLiteral(resourceName: "Card3")), color: Color(#colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)))
+]
+
