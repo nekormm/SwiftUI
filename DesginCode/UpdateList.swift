@@ -11,7 +11,7 @@ struct UpdateList: View {
    var body: some View {
       NavigationView {
          List(updateData) { update  in
-            NavigationLink(destination: Text(update.text)) {
+            NavigationLink(destination: UpdateDetail(update: update)) {
                HStack(alignment: .center) {
                   Image(update.image)
                      .resizable()
