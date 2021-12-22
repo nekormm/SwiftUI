@@ -8,36 +8,55 @@
 import SwiftUI
 
 struct UpdateList: View {
+   
+   @ObservedObject var store = UpdateStore()
+   
+   func addEntry() {
+      store.updates.append(Update(image: "Card1", title: "New Item", text: "This is a new text for a new entry", date: "12 Jan"))
+   }
+   
    var body: some View {
       NavigationView {
-         List(updateData) { update  in
-            NavigationLink(destination: UpdateDetail(update: update)) {
-               HStack(alignment: .center) {
-                  Image(update.image)
-                     .resizable()
-                     .aspectRatio( contentMode: .fit)
-                     .frame(width: 80, height: 80)
-                     .background(Color.black)
-                     .cornerRadius(20)
-                     .padding(.trailing,4)
-                  VStack(alignment: .leading, spacing: 8) {
-                        Text(update.title)
-                           .font(.system(size:20,weight: .ultraLight))
-                        Text(update.text)
-                           .lineLimit(2)
-                           .font(.subheadline)
-                           .foregroundColor(Color(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)))
-                        
-                        Text(update.date)
-                           .font(.system(size: 14,weight: .light))
-                           .foregroundColor(.cyan)
-                     }
+         List {
+            
+            ForEach(store.updates) { update  in
+               NavigationLink(destination: UpdateDetail(update: update)) {
+                  HStack(alignment: .center) {
+                     Image(update.image)
+                        .resizable()
+                        .aspectRatio( contentMode: .fit)
+                        .frame(width: 80, height: 80)
+                        .background(Color.black)
+                        .cornerRadius(20)
+                        .padding(.trailing,4)
+                     VStack(alignment: .leading, spacing: 8) {
+                           Text(update.title)
+                              .font(.system(size:20,weight: .ultraLight))
+                           Text(update.text)
+                              .lineLimit(2)
+                              .font(.subheadline)
+                              .foregroundColor(Color(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)))
+                           
+                           Text(update.date)
+                              .font(.system(size: 14,weight: .light))
+                              .foregroundColor(.cyan)
+                        }
 
+                  }
+                  .padding(.vertical,8)
                }
-               .padding(.vertical,8)
+            }
+            .onDelete { index in
+               self.store.updates.remove(at: index.first!)
+            }
+            .onMove { (source: IndexSet, destination: Int) in
+               self.store.updates.move(fromOffsets: source, toOffset: destination)
             }
          }
          .navigationTitle(Text("Updates"))
+         .navigationBarItems(leading: Button(action: addEntry){
+            Text("Add new")
+         }, trailing: EditButton())
       }
       
    }
