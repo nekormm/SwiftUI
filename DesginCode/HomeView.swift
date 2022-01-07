@@ -43,6 +43,18 @@ struct HomeView: View {
          .padding(.leading, 14)
          .padding(.top , 30)
          
+         HStack(spacing:12) {
+            RingView(color1: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1), color2: #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1), width: 44, height: 44, percent: 87, delay: 0.3, show: .constant(true))
+            Text("X minutes left")
+               .font(.subheadline)
+               .fontWeight(.light)
+            
+         }
+         .padding(8)
+         .background(Color.white)
+         .cornerRadius(20)
+         .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
+         .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
          
          ScrollView (.horizontal, showsIndicators: false) {
             HStack {
@@ -124,4 +136,6 @@ let sectionData = [
    Section(title: "Options available", text: "18 options", logo: "Logo1", image: Image("Card6"), color: Color("card1")),
    Section(title: "Options Not available", text: "3 options", logo: "Logo1", image: Image(uiImage: #imageLiteral(resourceName: "Card3")), color: Color(#colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)))
 ]
+
+
 

@@ -14,37 +14,44 @@ struct RingView: View {
    var width : CGFloat = 44
    var height : CGFloat = 44
    var percent : CGFloat = 82
+   var delay : Double = 0.3
+   @Binding var show : Bool
    
-    var body: some View {
-       let multiplier = width / 44
-       let progress = 1 - percent / 100
-       return ZStack {
-          
-          Circle()
-             .stroke(Color.black.opacity(0.2), style: StrokeStyle(lineWidth: 5 * multiplier))
-             .frame(width: width, height: height)
-          
-          Circle()
-             .trim(from: progress, to: 1)
-             .stroke(
-               LinearGradient(colors: [Color(color1), Color(color2)], startPoint: .leading, endPoint: .trailing), style: StrokeStyle(lineWidth: 5 * multiplier , lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 5)
-             )
-             .rotationEffect(Angle(degrees: 90))
-             .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
-             .frame(width: width, height: height)
-          .shadow(color: Color(color2).opacity(0.3), radius: 3 * multiplier, x: 0, y: 3 * multiplier)
-          
-          Text("\(Int(percent))%")
-             .font(.system(size: 14 * multiplier))
-             .fontWeight(.medium)
-       }
-    }
+   var body: some View {
+      let multiplier = width / 44
+      let progress = 1 - percent / 100
+      return ZStack {
+         
+         Circle()
+            .stroke(Color.black.opacity(0.2), style: StrokeStyle(lineWidth: 5 * multiplier))
+            .frame(width: width, height: height)
+         
+         Circle()
+            .trim(from: show ? progress : 1, to: 1)
+            .stroke(
+               LinearGradient(colors: [Color(color1), Color(color2)], startPoint: .topTrailing, endPoint: .bottomLeading), style: StrokeStyle(lineWidth: 5 * multiplier , lineCap: .round, lineJoin: .round, miterLimit: .infinity, dash: [20,0], dashPhase: 5)
+            )
+            .rotationEffect(Angle(degrees: 90))
+            .rotation3DEffect(Angle(degrees: 180), axis: (x: 1, y: 0, z: 0))
+            .frame(width: width, height: height)
+            .shadow(color: Color(color2).opacity(0.3), radius: 3 * multiplier, x: 0, y: 3 * multiplier)
+         
+         Text("\(Int(percent))%")
+            .font(.system(size: 14 * multiplier))
+            .fontWeight(.medium)
+            .onTapGesture {
+               self.show.toggle()
+            }
+      }
+   }
 }
 
 struct RingView_Previews: PreviewProvider {
-    static var previews: some View {
-        RingView()
-    }
+   
+   static var previews: some View {
+      
+      RingView(show: .constant(true))
+   }
 }
 
 
