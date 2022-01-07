@@ -16,6 +16,7 @@
 		D6523326276A89C000421E34 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6523325276A89C000421E34 /* HomeView.swift */; };
 		D6A038BC2773C2CF001716F8 /* RingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A038BB2773C2CF001716F8 /* RingView.swift */; };
 		D6A9B9552788A21200DAD415 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9B9542788A21200DAD415 /* Modifiers.swift */; };
+		D6A9B9572788DECA00DAD415 /* CourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A9B9562788DECA00DAD415 /* CourseList.swift */; };
 		D6C8FE4927624AC000BF2405 /* DesginCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C8FE4827624AC000BF2405 /* DesginCodeApp.swift */; };
 		D6C8FE4B27624AC000BF2405 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C8FE4A27624AC000BF2405 /* ContentView.swift */; };
 		D6C8FE4D27624AC200BF2405 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6C8FE4C27624AC200BF2405 /* Assets.xcassets */; };
@@ -52,6 +53,7 @@
 		D6523325276A89C000421E34 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D6A038BB2773C2CF001716F8 /* RingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingView.swift; sourceTree = "<group>"; };
 		D6A9B9542788A21200DAD415 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		D6A9B9562788DECA00DAD415 /* CourseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseList.swift; sourceTree = "<group>"; };
 		D6C8FE4527624AC000BF2405 /* DesginCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesginCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6C8FE4827624AC000BF2405 /* DesginCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesginCodeApp.swift; sourceTree = "<group>"; };
 		D6C8FE4A27624AC000BF2405 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				D6A9B9542788A21200DAD415 /* Modifiers.swift */,
 				D6A038BB2773C2CF001716F8 /* RingView.swift */,
 				D6523325276A89C000421E34 /* HomeView.swift */,
+				D6A9B9562788DECA00DAD415 /* CourseList.swift */,
 				D6468054277274990027680B /* UpdateList.swift */,
 				D6468059277289FC0027680B /* UpdateDetail.swift */,
 				D646805B277381000027680B /* UpdateStore.swift */,
@@ -288,6 +291,7 @@
 				D6A9B9552788A21200DAD415 /* Modifiers.swift in Sources */,
 				D646805E27738E3C0027680B /* TabBar.swift in Sources */,
 				D646805A277289FC0027680B /* UpdateDetail.swift in Sources */,
+				D6A9B9572788DECA00DAD415 /* CourseList.swift in Sources */,
 				D6C8FE4B27624AC000BF2405 /* ContentView.swift in Sources */,
 				D652332427694A7C00421E34 /* Home.swift in Sources */,
 				D6468055277274990027680B /* UpdateList.swift in Sources */,
